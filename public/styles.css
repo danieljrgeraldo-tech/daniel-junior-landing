@@ -1057,7 +1057,7 @@ h3 {
 
   .hero::before {
     height: 100%;
-    background: linear-gradient(180deg, rgba(4, 10, 8, 0) 48%, rgba(4, 10, 8, 0.08) 58%, rgba(4, 10, 8, 0.26) 70%, rgba(4, 10, 8, 0.66) 86%, #040a08 98%, #040a08 100%);
+    background: linear-gradient(180deg, rgba(4, 10, 8, 0) 38%, rgba(4, 10, 8, 0.12) 50%, rgba(4, 10, 8, 0.46) 65%, rgba(4, 10, 8, 0.84) 82%, #040a08 96%, #040a08 100%);
   }
 
   .hero::after {
@@ -1078,7 +1078,7 @@ h3 {
 
   .hero-overlay {
     background:
-      linear-gradient(180deg, rgba(4, 10, 8, 0.58) 0%, rgba(4, 10, 8, 0) 25%, rgba(4, 10, 8, 0) 60%, rgba(4, 10, 8, 0.28) 78%, #040a08 98%),
+      linear-gradient(180deg, rgba(4, 10, 8, 0.58) 0%, rgba(4, 10, 8, 0) 25%, rgba(4, 10, 8, 0) 48%, rgba(4, 10, 8, 0.24) 66%, #040a08 98%),
       linear-gradient(90deg, rgba(4, 10, 8, 0.15) 0%, rgba(4, 10, 8, 0) 100%);
   }
 
@@ -1096,6 +1096,7 @@ h3 {
   .hero-content {
     max-width: none;
     padding-top: 42vh;
+    transform: translateY(-34px);
   }
 
   .hero-actions {

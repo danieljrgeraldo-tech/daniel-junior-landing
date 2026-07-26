@@ -148,18 +148,16 @@ ul {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border: 1px solid rgba(216, 179, 107, 0.56);
-  border-radius: 50%;
-  background: rgba(216, 179, 107, 0.11);
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin-right: 1px;
   color: var(--gold);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  box-shadow: inset 0 1px 0 rgba(255, 250, 240, 0.14), 0 0 20px rgba(216, 179, 107, 0.12);
+  line-height: 1;
+  text-shadow: 0 0 16px rgba(216, 179, 107, 0.32);
 }
 
 .nav {
@@ -558,6 +556,41 @@ h3 {
   border-top: 1px solid var(--line);
   font-size: clamp(1rem, 1.55vw, 1.3rem);
   font-weight: 700;
+}
+
+[data-select-list] li,
+[data-loop-select] li {
+  transition: transform 0.42s var(--ease), background 0.42s var(--ease), box-shadow 0.42s var(--ease), border-color 0.42s var(--ease), padding 0.42s var(--ease);
+}
+
+[data-select-list] li.is-selected,
+[data-loop-select] li.is-selected {
+  z-index: 1;
+  transform: scale(1.025);
+  margin-inline: -10px;
+  padding-inline: 38px 26px;
+  border-color: transparent;
+  border-radius: 7px;
+  background: rgba(216, 179, 107, 0.15);
+  box-shadow: 0 13px 30px rgba(18, 28, 22, 0.12), inset 0 0 0 1px rgba(216, 179, 107, 0.28);
+}
+
+[data-select-list] li.is-selected::after,
+[data-loop-select] li.is-selected::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  color: #fffdf7;
+  background: #2e7c60;
+  font-size: 0.72rem;
+  box-shadow: 0 0 0 5px rgba(46, 124, 96, 0.12);
 }
 
 .role-card li::before,
@@ -1020,6 +1053,10 @@ h3 {
     object-position: 55% 28%;
   }
 
+  .hero-media {
+    clip-path: inset(0 0 46% 0);
+  }
+
   .hero-overlay {
     background:
       linear-gradient(180deg, rgba(4, 10, 8, 0.75) 0%, rgba(4, 10, 8, 0) 25%, rgba(4, 10, 8, 0) 45%, rgba(4, 10, 8, 0.7) 70%, #040a08 95%),
@@ -1097,7 +1134,7 @@ h3 {
     font-size: 0.74rem;
     color: rgba(255, 250, 240, 0.92);
     text-transform: none;
-    animation: none;
+    animation: badgeFloat 5.8s ease-in-out infinite;
     background:
       linear-gradient(90deg, rgba(12, 20, 17, 0.48), rgba(74, 55, 44, 0.22), rgba(12, 20, 17, 0.42)),
       rgba(14, 19, 15, 0.2);
@@ -1113,7 +1150,7 @@ h3 {
   .hero-pillars span:nth-child(2),
   .hero-pillars a:nth-child(3),
   .hero-pillars span:nth-child(3),
-  .hero-pillars a:nth-child(4),
+.hero-pillars a:nth-child(4),
   .hero-pillars span:nth-child(4) {
     inset: auto;
     min-width: 0;
@@ -1122,11 +1159,11 @@ h3 {
   }
 
   .hero-pillars a:nth-child(2),
-  .hero-pillars span:nth-child(2) { margin-left: 12px; }
+  .hero-pillars span:nth-child(2) { margin-left: 12px; animation-delay: -1.2s; }
   .hero-pillars a:nth-child(3),
-  .hero-pillars span:nth-child(3) { margin-left: 2px; }
+  .hero-pillars span:nth-child(3) { margin-left: 2px; animation-delay: -2.4s; }
   .hero-pillars a:nth-child(4),
-  .hero-pillars span:nth-child(4) { margin-left: 18px; }
+  .hero-pillars span:nth-child(4) { margin-left: 18px; animation-delay: -3.6s; }
 
   .scroll-cue {
     display: none;
@@ -1200,6 +1237,61 @@ h3 {
 
   .footer-inner {
     flex-direction: column;
+  }
+}
+
+.partnership-section {
+  padding-block: clamp(72px, 9vw, 124px);
+}
+
+.partnership-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(260px, 0.82fr);
+  gap: clamp(28px, 7vw, 90px);
+  align-items: center;
+  padding: clamp(30px, 5vw, 64px);
+  border: 1px solid rgba(216, 179, 107, 0.36);
+  border-radius: 12px;
+  background: linear-gradient(120deg, rgba(255, 250, 240, 0.08), rgba(216, 179, 107, 0.04));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 250, 240, 0.08);
+}
+
+.partnership-card h2 { margin-bottom: 0; }
+
+.partnership-copy p {
+  margin: 0 0 22px;
+  color: rgba(255, 250, 240, 0.72);
+  font-size: 1.03rem;
+  line-height: 1.65;
+}
+
+.partnership-copy ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.partnership-copy li {
+  padding: 8px 11px;
+  border: 1px solid rgba(216, 179, 107, 0.26);
+  border-radius: 999px;
+  color: rgba(255, 250, 240, 0.84);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 820px) {
+  .partnership-section {
+    padding-block: 56px;
+  }
+
+  .partnership-card {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 28px 22px;
+  }
+
+  .partnership-copy p {
+    font-size: 1rem;
   }
 }
 

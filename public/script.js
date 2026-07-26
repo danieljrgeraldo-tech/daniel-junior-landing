@@ -41,6 +41,8 @@ revealItems.forEach((item, index) => {
 
 const drawerStacks = document.querySelectorAll("[data-drawer-stack]");
 const selectStacks = document.querySelectorAll("[data-select-stack]");
+const selectLists = document.querySelectorAll("[data-select-list]");
+const loopSelects = document.querySelectorAll("[data-loop-select]");
 
 function updateDrawerFocus() {
   if (!window.matchMedia("(max-width: 820px)").matches) {
@@ -91,19 +93,55 @@ function updateSelectionFocus() {
   });
 }
 
+function updateListSelectionFocus() {
+  const focusLine = window.innerHeight * 0.5;
+
+  selectLists.forEach((list) => {
+    const items = [...list.querySelectorAll("li")];
+    let selected = items[0];
+    let nearest = Number.POSITIVE_INFINITY;
+
+    items.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const distance = Math.abs(rect.top + rect.height / 2 - focusLine);
+      if (distance < nearest) {
+        nearest = distance;
+        selected = item;
+      }
+    });
+
+    items.forEach((item) => item.classList.toggle("is-selected", item === selected));
+  });
+}
+
+loopSelects.forEach((list) => {
+  const items = [...list.querySelectorAll("li")];
+  if (!items.length) return;
+  let activeIndex = 0;
+  items[activeIndex].classList.add("is-selected");
+  window.setInterval(() => {
+    items[activeIndex].classList.remove("is-selected");
+    activeIndex = (activeIndex + 1) % items.length;
+    items[activeIndex].classList.add("is-selected");
+  }, 2600);
+});
+
 window.addEventListener("scroll", () => {
   updateScrollState();
   updateDrawerFocus();
   updateSelectionFocus();
+  updateListSelectionFocus();
 }, { passive: true });
 window.addEventListener("resize", () => {
   updateScrollState();
   updateDrawerFocus();
   updateSelectionFocus();
+  updateListSelectionFocus();
 });
 updateScrollState();
 updateDrawerFocus();
 updateSelectionFocus();
+updateListSelectionFocus();
 
 if (window.matchMedia("(pointer: fine)").matches) {
   window.addEventListener(

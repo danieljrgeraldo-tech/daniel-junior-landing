@@ -1057,8 +1057,8 @@ h3 {
   }
 
   .hero::after {
-    height: 260px;
-    background: #040a08;
+    height: 56%;
+    background: linear-gradient(180deg, rgba(4, 10, 8, 0) 0%, #040a08 30%, #040a08 100%);
   }
 
   .hero-media img {

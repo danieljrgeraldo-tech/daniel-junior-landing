@@ -1048,7 +1048,7 @@ h3 {
 
   .hero::before {
     height: 100%;
-    background: linear-gradient(180deg, rgba(4, 10, 8, 0) 31%, rgba(4, 10, 8, 0.28) 43%, rgba(4, 10, 8, 0.78) 59%, #040a08 76%, #040a08 100%);
+    background: linear-gradient(180deg, rgba(4, 10, 8, 0) 30%, rgba(4, 10, 8, 0.24) 40%, rgba(4, 10, 8, 0.72) 52%, rgba(4, 10, 8, 0.94) 63%, #040a08 72%, #040a08 100%);
   }
 
   .hero::after {
@@ -1112,8 +1112,8 @@ h3 {
 
   .hero-pillars {
     position: absolute;
-    top: clamp(268px, 32svh, 305px);
-    left: 18px;
+    top: clamp(296px, 35.5svh, 326px);
+    left: 24px;
     z-index: 6;
     display: flex;
     flex-direction: column;
@@ -1133,10 +1133,10 @@ h3 {
     width: fit-content;
     min-width: 0;
     max-width: none;
-    min-height: 35px;
-    padding: 0 15px;
+    min-height: 42px;
+    padding: 0 18px;
     border-radius: 999px;
-    font-size: 0.74rem;
+    font-size: 0.92rem;
     color: rgba(255, 250, 240, 0.92);
     text-transform: none;
     animation: badgeFloatSoft 7.4s ease-in-out infinite;
@@ -1166,9 +1166,9 @@ h3 {
   .hero-pillars a:nth-child(2),
   .hero-pillars span:nth-child(2) { margin-left: 12px; animation-delay: -1.2s; }
   .hero-pillars a:nth-child(3),
-  .hero-pillars span:nth-child(3) { margin-left: 2px; animation-delay: -2.4s; }
+  .hero-pillars span:nth-child(3) { margin-left: 3px; animation-delay: -2.4s; }
   .hero-pillars a:nth-child(4),
-  .hero-pillars span:nth-child(4) { margin-left: 18px; animation-delay: -3.6s; }
+  .hero-pillars span:nth-child(4) { margin-left: 20px; animation-delay: -3.6s; }
 
   .scroll-cue {
     display: none;
@@ -1257,7 +1257,9 @@ h3 {
   padding: clamp(30px, 5vw, 64px);
   border: 0;
   border-radius: 12px;
-  background: linear-gradient(120deg, rgba(255, 250, 240, 0.08), rgba(216, 179, 107, 0.04));
+  background:
+    linear-gradient(120deg, rgba(255, 250, 240, 0.08), rgba(216, 179, 107, 0.04)),
+    #12382d;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 250, 240, 0.08);
 }
 

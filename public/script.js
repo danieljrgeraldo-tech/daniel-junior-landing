@@ -40,6 +40,7 @@ revealItems.forEach((item, index) => {
 });
 
 const drawerStacks = document.querySelectorAll("[data-drawer-stack]");
+const selectStacks = document.querySelectorAll("[data-select-stack]");
 
 function updateDrawerFocus() {
   if (!window.matchMedia("(max-width: 820px)").matches) {
@@ -69,16 +70,40 @@ function updateDrawerFocus() {
   });
 }
 
+function updateSelectionFocus() {
+  const focusLine = window.innerHeight * 0.48;
+
+  selectStacks.forEach((stack) => {
+    const rows = [...stack.querySelectorAll(".terminal-line")];
+    let selected = rows[0];
+    let nearest = Number.POSITIVE_INFINITY;
+
+    rows.forEach((row) => {
+      const rect = row.getBoundingClientRect();
+      const distance = Math.abs(rect.top + rect.height / 2 - focusLine);
+      if (distance < nearest) {
+        nearest = distance;
+        selected = row;
+      }
+    });
+
+    rows.forEach((row) => row.classList.toggle("is-selected", row === selected));
+  });
+}
+
 window.addEventListener("scroll", () => {
   updateScrollState();
   updateDrawerFocus();
+  updateSelectionFocus();
 }, { passive: true });
 window.addEventListener("resize", () => {
   updateScrollState();
   updateDrawerFocus();
+  updateSelectionFocus();
 });
 updateScrollState();
 updateDrawerFocus();
+updateSelectionFocus();
 
 if (window.matchMedia("(pointer: fine)").matches) {
   window.addEventListener(

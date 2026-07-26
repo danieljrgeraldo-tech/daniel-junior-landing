@@ -593,6 +593,13 @@ h3 {
   box-shadow: 0 0 0 5px rgba(46, 124, 96, 0.12);
 }
 
+[data-select-list] li.is-selected::before,
+[data-loop-select] li.is-selected::before {
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+}
+
 .role-card li::before,
 .applications li::before,
 .list-panel li::before,
@@ -1041,7 +1048,7 @@ h3 {
 
   .hero::before {
     height: 100%;
-    background: linear-gradient(180deg, rgba(4, 10, 8, 0) 35%, rgba(4, 10, 8, 0.44) 49%, #040a08 65%, #040a08 100%);
+    background: linear-gradient(180deg, rgba(4, 10, 8, 0) 31%, rgba(4, 10, 8, 0.28) 43%, rgba(4, 10, 8, 0.78) 59%, #040a08 76%, #040a08 100%);
   }
 
   .hero::after {
@@ -1053,9 +1060,7 @@ h3 {
     object-position: 55% 28%;
   }
 
-  .hero-media {
-    clip-path: inset(0 0 46% 0);
-  }
+  .hero-media { clip-path: none; }
 
   .hero-overlay {
     background:
@@ -1134,7 +1139,7 @@ h3 {
     font-size: 0.74rem;
     color: rgba(255, 250, 240, 0.92);
     text-transform: none;
-    animation: badgeFloat 5.8s ease-in-out infinite;
+    animation: badgeFloatSoft 7.4s ease-in-out infinite;
     background:
       linear-gradient(90deg, rgba(12, 20, 17, 0.48), rgba(74, 55, 44, 0.22), rgba(12, 20, 17, 0.42)),
       rgba(14, 19, 15, 0.2);
@@ -1250,13 +1255,13 @@ h3 {
   gap: clamp(28px, 7vw, 90px);
   align-items: center;
   padding: clamp(30px, 5vw, 64px);
-  border: 1px solid rgba(216, 179, 107, 0.36);
+  border: 0;
   border-radius: 12px;
   background: linear-gradient(120deg, rgba(255, 250, 240, 0.08), rgba(216, 179, 107, 0.04));
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 250, 240, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 250, 240, 0.08);
 }
 
-.partnership-card h2 { margin-bottom: 0; }
+.partnership-card h2 { margin-bottom: 0; color: var(--ivory); }
 
 .partnership-copy p {
   margin: 0 0 22px;
@@ -1277,6 +1282,11 @@ h3 {
   border-radius: 999px;
   color: rgba(255, 250, 240, 0.84);
   font-size: 0.8rem;
+}
+
+@keyframes badgeFloatSoft {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -3px, 0); }
 }
 
 @media (max-width: 820px) {

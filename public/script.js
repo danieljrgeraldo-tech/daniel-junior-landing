@@ -39,9 +39,46 @@ revealItems.forEach((item, index) => {
   revealObserver.observe(item);
 });
 
-window.addEventListener("scroll", updateScrollState, { passive: true });
-window.addEventListener("resize", updateScrollState);
+const drawerStacks = document.querySelectorAll("[data-drawer-stack]");
+
+function updateDrawerFocus() {
+  if (!window.matchMedia("(max-width: 820px)").matches) {
+    drawerStacks.forEach((stack) => {
+      stack.querySelectorAll("article").forEach((card) => card.classList.remove("is-drawer-active"));
+    });
+    return;
+  }
+
+  const focusLine = window.innerHeight * 0.46;
+
+  drawerStacks.forEach((stack) => {
+    const cards = [...stack.querySelectorAll("article")];
+    let activeCard = cards[0];
+    let nearest = Number.POSITIVE_INFINITY;
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      const distance = Math.abs(rect.top + Math.min(rect.height * 0.42, 120) - focusLine);
+      if (distance < nearest) {
+        nearest = distance;
+        activeCard = card;
+      }
+    });
+
+    cards.forEach((card) => card.classList.toggle("is-drawer-active", card === activeCard));
+  });
+}
+
+window.addEventListener("scroll", () => {
+  updateScrollState();
+  updateDrawerFocus();
+}, { passive: true });
+window.addEventListener("resize", () => {
+  updateScrollState();
+  updateDrawerFocus();
+});
 updateScrollState();
+updateDrawerFocus();
 
 if (window.matchMedia("(pointer: fine)").matches) {
   window.addEventListener(

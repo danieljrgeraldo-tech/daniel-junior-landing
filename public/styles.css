@@ -1091,6 +1091,8 @@ h3 {
 
   .hero-actions {
     margin-bottom: 0;
+    padding: 12px 0;
+    background: #040a08;
   }
 
   .lead,
